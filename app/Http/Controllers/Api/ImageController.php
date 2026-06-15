@@ -46,42 +46,42 @@ class ImageController extends Controller
         'success' => true,
         'message' => 'Image uploaded successfully',
         'file_name' => $fileName,
-        'url' => asset('storage/app/' . $fileName)
+        'url' => asset('storage/' . $fileName)
     ]);
 }
-    public function upload(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
-        ]);
+    // public function upload(Request $request)
+    // {
+    //     $request->validate([
+    //         'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+    //     ]);
 
-        if ($request->hasFile('image')) {
+    //     if ($request->hasFile('image')) {
 
-            $file = $request->file('image');
+    //         $file = $request->file('image');
 
-            $filename = time() . '_' . $file->getClientOriginalName();
+    //         $filename = time() . '_' . $file->getClientOriginalName();
 
-            $path = $file->storeAs(
-                'uploads/images',
-                $filename,
-                'public'
-            );
-            dd([
-                'success' => true,
-                'message' => 'Image uploaded successfully',
-                'path' => $path,
-                'url' => asset('storage/'.$path),
-            ]);
-            return response()->json([
-                'success' => true,
-                'message' => 'Image uploaded successfully',
-                'path' => $path,
-                'url' => asset('storage/'.$path),
-            ]);
-        }
-        return response()->json([
-            'success' => false,
-            'message' => 'No image uploaded'
-        ], 400);
-    }
+    //         $path = $file->storeAs(
+    //             'uploads/images',
+    //             $filename,
+    //             'public'
+    //         );
+    //         dd([
+    //             'success' => true,
+    //             'message' => 'Image uploaded successfully',
+    //             'path' => $path,
+    //             'url' => asset('storage/'.$path),
+    //         ]);
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Image uploaded successfully',
+    //             'path' => $path,
+    //             'url' => asset('storage/'.$path),
+    //         ]);
+    //     }
+    //     return response()->json([
+    //         'success' => false,
+    //         'message' => 'No image uploaded'
+    //     ], 400);
+    // }
 }
