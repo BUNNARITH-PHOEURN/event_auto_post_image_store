@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-   public function uploadImage(Request $request)
+public function uploadImage(Request $request)
 {
     $imageData = $request->image;
 
@@ -18,16 +18,15 @@ class ImageController extends Controller
         ], 400);
     }
 
-    // Check if base64 has prefix
+    // Extract base64
     if (str_contains($imageData, ',')) {
         $imageParts = explode(',', $imageData);
         $imageBase64 = $imageParts[1];
     } else {
-        // already pure base64
         $imageBase64 = $imageData;
     }
 
-    // Decode safely
+    // Decode
     $fileData = base64_decode($imageBase64);
 
     if ($fileData === false) {
@@ -37,16 +36,32 @@ class ImageController extends Controller
         ], 400);
     }
 
-    $fileName = uniqid() . '.png';
+    // Folder path
+    $folder = 'uploads/images';
 
-    $filePath = storage_path('app/public/'. $fileName);
+    // Create filename
+    $fileName = time() . '_' . uniqid() . '.jpg';
+
+    // Full storage path
+    $fullPath = storage_path('app/public/' . $folder);
+
+    if (!file_exists($fullPath)) {
+        mkdir($fullPath, 0775, true);
+    }
+
+    // Save file
+    $filePath = $fullPath . '/' . $fileName;
     file_put_contents($filePath, $fileData);
+
+    // Public path
+    $publicPath = $folder . '/' . $fileName;
 
     return response()->json([
         'success' => true,
         'message' => 'Image uploaded successfully',
         'file_name' => $fileName,
-        'url' => asset('storage/' . $fileName)
+        'path' => $publicPath,
+        'url' => asset('storage/' . $publicPath),
     ]);
 }
     // public function upload(Request $request)
