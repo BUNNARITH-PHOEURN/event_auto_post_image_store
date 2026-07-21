@@ -24,3 +24,4 @@ Route::get('/api/images', [ImageController::class, 'index']);
 Route::post('/uploadImage', [ImageController::class, 'uploadImage']);
 
 Route::post('/recruitmentpdf',[Controller::class,'recruitment']);
+Route::post('/demopdf',[Controller::class,'ExpenclaimPDF']);
