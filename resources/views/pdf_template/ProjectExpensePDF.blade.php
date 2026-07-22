@@ -116,7 +116,7 @@
         }
 
         .col-no {
-            width: 5%;
+            width: 9%;
             text-align: center;
         }
 
