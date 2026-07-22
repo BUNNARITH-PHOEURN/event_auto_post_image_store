@@ -230,7 +230,7 @@
         </tr>
     </table>
 
-    <div class="form-title">Cash Adanve Form</div>
+    <div class="form-title">Cash Advance Form</div>
 
     <!-- Info block -->
     <table class="info-table">
