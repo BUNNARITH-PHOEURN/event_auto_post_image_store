@@ -296,7 +296,7 @@
                 <tr>
                     <td class="col-no">{{ $Item['No'] }}</td>
                     <td class="col-desc">{{ $Item['Description'] }}</td>
-                    <td class="col-amt">$ {{ $Item['Amount'] }}</td>
+                    <td class="col-amt">{{ $Item['Amount'] }}</td>
                 </tr>
             @endforeach
         </tbody>
