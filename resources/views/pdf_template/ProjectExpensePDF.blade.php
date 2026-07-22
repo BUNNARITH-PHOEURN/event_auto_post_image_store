@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Cash Advance Form</title>
+    <title>Project Expense Form</title>
     <style>
         @page {
             background-repeat: no-repeat;
@@ -230,7 +230,7 @@
         </tr>
     </table>
 
-    <div class="form-title">Cash Advance Form</div>
+    <div class="form-title">Project Expense Form</div>
 
     <!-- Info block -->
     <table class="info-table">
@@ -249,9 +249,9 @@
             </td>
         </tr>
         <tr>
-            <td class="info-label">Cash Advance ID</td>
+            <td class="info-label">Expense Claim ID</td>
             <td class="info-colon">:</td>
-            <td class="info-value" colspan="4">{{ $data['CashAdvanceID'] }}</td>
+            <td class="info-value" colspan="4">{{ $data['ProjectExpenseID'] }}</td>
         </tr>
         <tr>
             <td colspan="6" style="height:8px;"></td>
@@ -280,22 +280,48 @@
             <td class="info-colon"></td>
             <td class="info-value;" style="text-align:right;">Approved Date : {{ $data['ApprovedDate'] }}</td>
         </tr>
+        
+    </table>
+    <table class="info-table">
+        <tr>
+            <td class="info-label" style="width:30%;">Customer S.O / Contract Number</td>
+            <td class="info-colon">:</td>
+            <td class="info-value" colspan="3">{{ $data['ContractNumber'] }}</td>
+        </tr>
+        <tr>
+            <td class="info-label" style="width:30%;">Customer</td>
+            <td class="info-colon">:</td>
+            <td class="info-value" colspan="3">{{ $data['Customer'] }}</td>
+        </tr>
+        <tr>
+            <td class="info-label" style="width:30%;">Project Expense Type </td>
+            <td class="info-colon">:</td>
+            <td class="info-value" colspan="3">{{ $data['ProjectExpenseType'] }}</td>
+        </tr>
     </table>
 
     <!-- Items table -->
     <table class="items-table">
         <thead>
             <tr>
-                <th class="col-no">No.</th>
+                <th class="col-no" style="text-align: center">No.</th>
+                <th class="col-date" style="text-align: center">Date</th>
+                <th class="col-date" style="text-align: center">Invoice No.</th>
                 <th class="col-desc">Description</th>
+                <th class="col-qty" style="text-align: center">Qty</th>
+                <th class="col-price">Price</th>
                 <th class="col-amt">Amount</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($data['Items'] as $Item)
                 <tr>
-                    <td class="col-no">{{ $Item['No'] }}</td>
+                    <td class="col-no" style="text-align: center">{{ $Item['No'] }}</td>
+                    <td class="col-date" style="text-align: center">{{ $Item['Date'] }}</td>
+                    <td class="col-date" style="text-align: center">{{ $Item['InvoiceNo'] }}</td>
                     <td class="col-desc">{{ $Item['Description'] }}</td>
+                    <td class="col-qty">{{ $Item['Qty'] }}</td>
+                    <td class="col-price">{{ $Item['Price'] }}</td>
                     <td class="col-amt">{{ $Item['Amount'] }}</td>
                 </tr>
             @endforeach

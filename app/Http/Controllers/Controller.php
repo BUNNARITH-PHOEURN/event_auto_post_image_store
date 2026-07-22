@@ -41,6 +41,9 @@ class Controller extends BaseController
         elseif($data["Type"] == "Cash Advance Form"){
             $html = view('pdf_template.CashAdvanceFormPDF', compact('data'))->render();
         }
+        elseif($data["Type"] == "Project Expense Form"){
+            $html = view('pdf_template.ProjectExpensePDF', compact('data'))->render();
+        }
         
 
         $mpdf = new \Mpdf\Mpdf([
